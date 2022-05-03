@@ -9,6 +9,13 @@
  --main-border-radius: 25px;
  --secondary-border-radius: 15px;
 
+  --darkBlue: #1d71f2;
+ --blue: #1c9cf6;
+ --lightBlue: #19c3fb;
+ --bubbles: #e3f4fe;
+ --white: #fffae0;
+ --yellow: #ffcd00;
+
 /* Breakpoints */
 --mobile-breakpoint: 600px;
 --tablet-breakpoint: 768px;

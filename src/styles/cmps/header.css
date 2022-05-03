@@ -1,0 +1,43 @@
+.app-header {
+    background: #546e97;
+    font-family: var(--reg-font);
+
+}
+
+.header-container {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.toggle-btns {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+#header-toggle-btn {
+    background-color: white;
+    color: black;
+}
+
+#nav-btn {
+    color: var(--main-text-color);
+    border: 1px solid var(--bubbles);
+    text-transform: none;
+}
+
+.nav-active #nav-btn {
+    color: black;
+    border: 2px solid black;
+}
+
+.logo {
+    color: var(--main-text-color);
+}
+
+nav a:not(:last-child) {
+    margin-right: 20px;
+}
