@@ -1,7 +1,9 @@
+import { FavoriteCities } from './pages/FavoriteCities'
+
 function App() {
   return (
     <div className='App'>
-      <h1>work</h1>
+      <FavoriteCities />
     </div>
   )
 }

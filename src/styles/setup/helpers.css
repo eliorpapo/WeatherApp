@@ -1,0 +1,19 @@
+.bold{
+    font-weight: bold;
+}
+
+.self-center{align-self: center;}
+
+.flex {
+display: flex;
+}
+
+.align-center{
+    align-items: center;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.capitalize{
+    text-transform: capitalize;
+}
