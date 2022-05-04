@@ -39,6 +39,14 @@ export const MainHeader = () => {
               Favorites
             </Button>
           </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? 'nav-active' : '')}
+            to='/main'
+          >
+            <Button id='nav-btn' variant='outlined'>
+              Main Cities
+            </Button>
+          </NavLink>
         </nav>
       </section>
     </header>

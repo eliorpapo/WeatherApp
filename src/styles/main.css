@@ -2,7 +2,11 @@
 @import 'setup/base.css';
 @import 'setup/helpers.css';
 
+
+@import 'pages/searchCity.css';
+
 @import 'cmps/header.css';
+@import 'cmps/searchBar.css';
 @import 'cmps/cityWeather.css';
 @import 'cmps/currentDay.css';
 @import 'cmps/currentDayDescriptionItem.css';

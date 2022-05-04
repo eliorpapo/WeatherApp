@@ -1,5 +1,6 @@
 import { FavoriteCities } from './pages/FavoriteCities'
 import { PopularCities } from './pages/PopularCities'
+import { SearchCity } from './pages/SearchCity'
 import { MainHeader } from './components/MainHeader'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -10,8 +11,9 @@ function App() {
         <MainHeader />
         <main className='container'>
           <Routes>
-            <Route exact path='/' element={<PopularCities />} />
+            <Route path='/' element={<SearchCity />} />
             <Route path='/favorites' element={<FavoriteCities />} />
+            <Route path='/popular' element={<PopularCities />} />
           </Routes>
         </main>
       </div>
