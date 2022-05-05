@@ -2,9 +2,8 @@ import { CityWeather } from '../components/CityWeather'
 
 export const FavoriteCities = () => {
   return (
-    <div className='page favorite-cities'>
+    <div className='favorite-cities'>
       <h1 className='page-header'>Your Favorites</h1>
-      <CityWeather />
     </div>
   )
 }

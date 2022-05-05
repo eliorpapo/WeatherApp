@@ -1,5 +1,4 @@
-
-.current-day{
+.current-day {
     position: relative;
     height: 100%;
 }
@@ -27,7 +26,7 @@
     border-radius: var(--main-border-radius);
 }
 
-.current-day-info{
+.current-day-info {
     position: relative;
     z-index: 10;
     display: flex;
@@ -37,8 +36,18 @@
     height: 100%;
 }
 
-.current-day-info-section{
+.current-day-info-section {
     display: flex;
     flex-direction: column;
     gap: 1px;
+}
+
+.current-day-description {
+    flex: 3;
+}
+
+.current-day-description-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 7px;
 }
