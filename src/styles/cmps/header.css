@@ -1,7 +1,7 @@
 .app-header {
     background: #546e97;
     font-family: var(--reg-font);
-
+    margin-bottom: 30px;
 }
 
 .header-container {

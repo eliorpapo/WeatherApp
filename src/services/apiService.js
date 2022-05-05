@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { makeId } from './utilService'
+import { makeId, getDayFromTimeStamp } from './utilService'
 
-// const APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E';
-const APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
+const APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E'
+// const APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
 // const APIKEY = 'rO2nkWz2dOqubxGNnDneAg0WtKGS2Ypn'
 // const APIKEY = 'AeG000iUcMK0QpCzzJtD9v287MU0vZx3';
 
@@ -10,6 +10,29 @@ const language = 'en-us'
 
 export const apiService = {
   autoComplete,
+  currentWeather,
+  getForecast,
+  locateCity,
+}
+
+async function locateCity() {
+  let position = await _getLongAndLat().catch((err) => {
+    console.log('err', err)
+    throw err
+  })
+  if (!position) {
+    const currLocation = { name: 'Tel Aviv', countryId: 'IL', key: '215854' } //tel aviv by default
+    return currLocation
+  }
+  const pos = {
+    lat: '' + position.coords.latitude,
+    lng: '' + position.coords.longitude,
+  }
+  const currLocation = await _getCityFromPos(pos).catch((err) => {
+    console.log('err', err)
+    throw err
+  })
+  return currLocation
 }
 
 async function autoComplete(str) {
@@ -32,6 +55,86 @@ async function autoComplete(str) {
   return cities
 }
 
+async function currentWeather(cityKey) {
+  const { data } = await axios
+    .get(
+      `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${APIKEY}&language=${language}&details=true`
+    )
+    .catch((err) => {
+      console.log('err', err)
+      throw err
+    })
+  const currWeather = _createCurrWeather(data[0])
+  return currWeather
+}
+
+async function getForecast(cityKey, isMetric = true) {
+  const { data } = await axios
+    .get(
+      `https://dataservice.accuweather.com//forecasts/v1/daily/5day/${cityKey}?apikey=${APIKEY}&language=${language}&details=false&metric=${isMetric}`
+    )
+    .catch((err) => {
+      console.log('err', err)
+      throw err
+    })
+  const forecast = _createForecast(data.DailyForecasts)
+  return forecast
+}
+
+async function _getCityFromPos(pos) {
+  const { data } = await axios
+    .get(
+      `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${APIKEY}&q=${pos.lat},${pos.lng}&language=${language}&details=false&toplevel=false`
+    )
+    .catch((err) => {
+      throw err
+    })
+  const currLocation = {
+    name: data.EnglishName,
+    countryId: data.Country.ID,
+    key: data.Key,
+  }
+  return currLocation
+}
+
+function _createForecast(data) {
+  const forecasts = []
+  data.forEach((forcast) => {
+    var dateStr = new Date(forcast.Date)
+    dateStr = dateStr.toDateString()
+    dateStr = dateStr.slice(0, 3) // only the day
+
+    var tempFormat =
+      (forcast.Temperature.Minimum.Value + forcast.Temperature.Maximum.Value) /
+      2
+    tempFormat = tempFormat.toFixed(0)
+
+    const currForecast = {
+      date: dateStr,
+      temp: tempFormat,
+      weatherIcon: forcast.Day.Icon,
+    }
+    forecasts.push(currForecast)
+  })
+  return forecasts
+}
+
+function _createCurrWeather(data) {
+  const currWeather = {
+    minTemp: data.TemperatureSummary.Past24HourRange.Minimum,
+    maxTemp: data.TemperatureSummary.Past24HourRange.Maximum,
+    currTemp: data.Temperature,
+    weatherConditions: data.WeatherText,
+    weatherIcon: data.WeatherIcon,
+    date: getDayFromTimeStamp(data.EpochTime),
+    wind: data.Wind.Speed.Metric,
+    airPressure: data.Pressure,
+    humidity: data.RelativeHumidity,
+    visibility: data.Visibility,
+  }
+  return currWeather
+}
+
 function _createCityObj(city) {
   const cityObj = {
     name: city.LocalizedName,
@@ -46,4 +149,10 @@ function _isInclude(cities, cityName) {
     if (cities[i].name === cityName) return true
   }
   return false
+}
+
+function _getLongAndLat() {
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  )
 }

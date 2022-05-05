@@ -1,20 +1,50 @@
-import { CurrentDayDescriptionItem } from './CurrentDayDescriptionItem'
-
-export const CurrentDayDescription = ({
-  forecast = [
-    { name: 'PREC', value: 75, unit: '%' },
-    { name: 'HIM', value: 72, unit: '%' },
-    { name: 'WIND', value: 6, unit: 'km/h' },
-    { name: 'Temwp', value: 17, unit: 'c' },
-    { name: 'WINsD', value: 6, unit: 'km/h' },
-    { name: 'Temp', value: 17, unit: 'c' },
-  ],
-}) => {
+export const CurrentDayDescription = ({ currWeather }) => {
+  if (!currWeather) return <div>Loading..</div>
   return (
     <div className='current-day-description'>
-      {forecast.map((item) => (
-        <CurrentDayDescriptionItem {...item} key={item.name} />
-      ))}
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Wind</p>
+        <p>
+          {currWeather.wind.Value} {currWeather.wind.Unit}
+        </p>
+      </div>
+
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Visibility</p>
+        <p>
+          {currWeather.visibility.Metric.Value}{' '}
+          {currWeather.visibility.Metric.Unit}
+        </p>
+      </div>
+
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Humidity</p>
+        <p>{currWeather.wind.Value} %</p>
+      </div>
+
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Air Pressure</p>
+        <p>
+          {currWeather.airPressure.Metric.Value}{' '}
+          {currWeather.airPressure.Metric.Unit}
+        </p>
+      </div>
+
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Max temp</p>
+        <p>
+          {currWeather.maxTemp.Metric.Value} &deg;
+          {currWeather.maxTemp.Metric.Unit}
+        </p>
+      </div>
+
+      <div className='current-day-description-item'>
+        <p className='bold uppercase'>Min temp</p>
+        <p>
+          {currWeather.minTemp.Metric.Value} &deg;
+          {currWeather.minTemp.Metric.Unit}
+        </p>
+      </div>
     </div>
   )
 }

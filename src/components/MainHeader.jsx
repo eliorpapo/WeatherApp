@@ -41,10 +41,18 @@ export const MainHeader = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) => (isActive ? 'nav-active' : '')}
-            to='/main'
+            to='/popular'
           >
             <Button id='nav-btn' variant='outlined'>
               Main Cities
+            </Button>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? 'nav-active' : '')}
+            to='/search'
+          >
+            <Button id='nav-btn' variant='outlined'>
+              Search
             </Button>
           </NavLink>
         </nav>

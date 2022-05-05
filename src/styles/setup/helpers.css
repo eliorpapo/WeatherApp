@@ -1,19 +1,33 @@
-.bold{
+.bold {
     font-weight: bold;
 }
 
-.self-center{align-self: center;}
+.self-center {
+    align-self: center;
+}
 
 .flex {
-display: flex;
+    display: flex;
 }
 
-.align-center{
+.align-center {
     align-items: center;
 }
-.uppercase{
+
+.uppercase {
     text-transform: uppercase;
 }
-.capitalize{
+
+.capitalize {
     text-transform: capitalize;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.page-header {
+    margin-bottom: 30px;
 }
