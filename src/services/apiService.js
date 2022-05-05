@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { makeId, getDayFromTimeStamp } from './utilService'
+import { getDateFromTimeStamp } from './utilService'
 
-const APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E'
+// const APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E'
 // const APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
-// const APIKEY = 'rO2nkWz2dOqubxGNnDneAg0WtKGS2Ypn'
+const APIKEY = 'rO2nkWz2dOqubxGNnDneAg0WtKGS2Ypn'
 // const APIKEY = 'AeG000iUcMK0QpCzzJtD9v287MU0vZx3';
 
 const language = 'en-us'
@@ -21,7 +21,7 @@ async function locateCity() {
     throw err
   })
   if (!position) {
-    const currLocation = { name: 'Tel Aviv', countryId: 'IL', key: '215854' } //tel aviv by default
+    const currLocation = { name: 'Tel Aviv', countryId: 'IL', key: '215854' } //Tel Aviv by default
     return currLocation
   }
   const pos = {
@@ -91,7 +91,6 @@ async function _getCityFromPos(pos) {
     })
   const currLocation = {
     name: data.EnglishName,
-    countryId: data.Country.ID,
     key: data.Key,
   }
   return currLocation
@@ -99,20 +98,21 @@ async function _getCityFromPos(pos) {
 
 function _createForecast(data) {
   const forecasts = []
-  data.forEach((forcast) => {
-    var dateStr = new Date(forcast.Date)
+  data.forEach((forecast) => {
+    var dateStr = new Date(forecast.Date)
     dateStr = dateStr.toDateString()
     dateStr = dateStr.slice(0, 3) // only the day
 
     var tempFormat =
-      (forcast.Temperature.Minimum.Value + forcast.Temperature.Maximum.Value) /
+      (forecast.Temperature.Minimum.Value +
+        forecast.Temperature.Maximum.Value) /
       2
     tempFormat = tempFormat.toFixed(0)
 
     const currForecast = {
       date: dateStr,
       temp: tempFormat,
-      weatherIcon: forcast.Day.Icon,
+      weatherIcon: forecast.Day.Icon,
     }
     forecasts.push(currForecast)
   })
@@ -126,7 +126,7 @@ function _createCurrWeather(data) {
     currTemp: data.Temperature,
     weatherConditions: data.WeatherText,
     weatherIcon: data.WeatherIcon,
-    date: getDayFromTimeStamp(data.EpochTime),
+    date: getDateFromTimeStamp(data.EpochTime),
     wind: data.Wind.Speed.Metric,
     airPressure: data.Pressure,
     humidity: data.RelativeHumidity,

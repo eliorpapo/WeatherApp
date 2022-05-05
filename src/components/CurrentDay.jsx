@@ -1,7 +1,6 @@
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
 
 export const CurrentDay = ({ location, currWeather }) => {
-  if (!currWeather) return <div>Loading..</div>
   const imgSrc = require(`../assets/images/weather-icons/${currWeather.weatherIcon}.png`)
   return (
     <div className='current-day'>

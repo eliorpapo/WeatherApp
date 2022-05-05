@@ -8,7 +8,7 @@ export function makeId(length = 5) {
   return text
 }
 
-export function getDayFromTimeStamp(timeStamp) {
+export function getDateFromTimeStamp(timeStamp) {
   const weekday = [
     'Sunday',
     'Monday',
