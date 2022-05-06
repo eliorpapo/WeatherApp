@@ -26,22 +26,22 @@ export const CityWeather = ({ city }) => {
   }, [])
 
   const getCurrWeather = async () => {
-    // const currWeather = await apiService
-    //   .currentWeather(city.key)
-    //   .catch((err) => {
-    //     console.log(err.message)
-    //   })
+    const currWeather = await apiService
+      .currentWeather(city.key)
+      .catch((err) => {
+        console.log(err.message)
+      })
 
-    const currWeather = demoDataCurrWeather
+    // const currWeather = demoDataCurrWeather
     setCurrWeather(currWeather)
   }
 
   const getForecast = async () => {
-    // const forecasts = await apiService.getForecast(city.key).catch((err) => {
-    //   console.log(err.message)
-    // })
+    const forecasts = await apiService.getForecast(city.key).catch((err) => {
+      console.log(err.message)
+    })
 
-    const forecasts = forecastDemo
+    // const forecasts = forecastDemo
     setForecasts(forecasts)
   }
 

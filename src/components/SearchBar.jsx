@@ -40,7 +40,6 @@ export const SearchBar = ({ setCity }) => {
       onKeyUp={(ev) => setSearchCity(ev.target.value)}
       options={cityOpts}
       onChange={(ev, val) => {
-        console.log(val)
         setCity(val)
       }}
       getOptionLabel={(option) => option.name}

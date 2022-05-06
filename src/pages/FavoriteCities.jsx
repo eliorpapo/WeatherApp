@@ -1,5 +1,5 @@
 import { CityWeather } from '../components/CityWeather'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadFavorites } from '../store/actions/favoriteActions'
 
@@ -11,7 +11,7 @@ export const FavoriteCities = () => {
   useEffect(() => {
     dispatch(loadFavorites())
   }, [])
-  if (!favorites.length) return <div>Loading...</div>
+  if (!favorites) return <div>Loading...</div>
   return (
     <div className='favorite-cities'>
       <h1 className='page-header'>Your Favorites</h1>

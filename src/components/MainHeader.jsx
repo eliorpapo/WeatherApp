@@ -3,6 +3,13 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 
 export const MainHeader = () => {
+  const navLinks = [
+    { to: '/', name: 'Home' },
+    { to: '/favorites', name: 'Favorites' },
+    { to: '/popular', name: 'Main Cities' },
+    { to: '/search', name: 'search' },
+  ]
+
   const toggleIsMetric = async () => {
     console.log(`toggleIsMetric`)
   }
@@ -28,38 +35,17 @@ export const MainHeader = () => {
           </Tooltip>
         </div>
         <nav className='nav-btns'>
-          <NavLink
-            className={({ isActive }) => (isActive ? 'nav-active' : '')}
-            to='/'
-          >
-            <Button id='nav-btn' variant='outlined'>
-              Home
-            </Button>
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => (isActive ? 'nav-active' : '')}
-            to='/favorites'
-          >
-            <Button id='nav-btn' variant='outlined'>
-              Favorites
-            </Button>
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => (isActive ? 'nav-active' : '')}
-            to='/popular'
-          >
-            <Button id='nav-btn' variant='outlined'>
-              Main Cities
-            </Button>
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => (isActive ? 'nav-active' : '')}
-            to='/search'
-          >
-            <Button id='nav-btn' variant='outlined'>
-              Search
-            </Button>
-          </NavLink>
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              className={({ isActive }) => (isActive ? 'nav-active' : '')}
+              to={link.to}
+            >
+              <Button id='nav-btn' variant='outlined'>
+                {link.name}
+              </Button>
+            </NavLink>
+          ))}
         </nav>
       </section>
     </header>

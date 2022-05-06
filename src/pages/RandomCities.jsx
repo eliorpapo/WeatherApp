@@ -1,3 +1,4 @@
+import { CityWeather } from '../components/CityWeather'
 export const RandomCities = () => {
   return (
     <div className='random-cities'>
