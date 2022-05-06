@@ -3,7 +3,12 @@ import { PopularCities } from './pages/PopularCities'
 import { SearchCity } from './pages/SearchCity'
 import { RandomCities } from './pages/RandomCities'
 import { MainHeader } from './components/MainHeader'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom'
 
 function App() {
   return (
@@ -16,6 +21,7 @@ function App() {
             <Route path='/favorites' element={<FavoriteCities />} />
             <Route path='/popular' element={<PopularCities />} />
             <Route path='/search' element={<SearchCity />} />
+            <Route path='*' element={<Navigate replace to='/' />} />
           </Routes>
         </main>
       </div>

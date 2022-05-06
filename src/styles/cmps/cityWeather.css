@@ -1,5 +1,6 @@
 .city-container {
     display: flex;
+    position: relative;
     border-radius: var(--main-border-radius);
     -webkit-box-shadow: 0 0 24px 7px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 24px 7px rgba(0, 0, 0, 0.2);
@@ -26,4 +27,12 @@
     padding: 15px 0;
     justify-content: space-between;
     gap: 10px;
+}
+
+#add-to-favorite-btn {
+    left: 60%;
+    top: -2%;
+    position: absolute;
+    font-size: 3rem;
+    cursor: pointer;
 }

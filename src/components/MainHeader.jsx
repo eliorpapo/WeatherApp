@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
 
 export const MainHeader = () => {
   const toggleIsMetric = async () => {
@@ -15,12 +16,16 @@ export const MainHeader = () => {
       <section className='header-container'>
         <h1 className='logo'>Weather App</h1>
         <div className='toggle-btns'>
-          <Button id='header-toggle-btn' onClick={toggleIsMetric}>
-            C&deg;
-          </Button>
-          <Button id='header-toggle-btn' onClick={toggleDarkMode}>
-            Dark
-          </Button>
+          <Tooltip title='Toggle Scale'>
+            <Button id='header-toggle-btn' onClick={toggleIsMetric}>
+              C&deg;
+            </Button>
+          </Tooltip>
+          <Tooltip title='Toggle Dark Mode'>
+            <Button id='header-toggle-btn' onClick={toggleDarkMode}>
+              Dark
+            </Button>
+          </Tooltip>
         </div>
         <nav className='nav-btns'>
           <NavLink
