@@ -1,0 +1,46 @@
+.dark-mode {
+    background-color: rgb(240, 240, 240) !important;
+    color: rgba(0, 0, 0, 0.61) !important;
+}
+
+.dark-mode button {
+    color: #000000 !important;
+
+    border: none;
+}
+
+.dark-mode button:hover {
+    border: none;
+}
+
+.dark-mode .app-header {
+    background-color: rgb(179 231 251 / 75%) !important;
+}
+
+.dark-mode .logo {
+    color: #000000;
+}
+
+.dark-mode p {
+    color: #000000;
+}
+
+.dark-mode h1 {
+    color: #000000;
+}
+
+.dark-mode h2 {
+    color: #000000;
+}
+
+.dark-mode h5 {
+    color: #000000;
+}
+
+.dark-mode .city-container {
+    background-color: #6e95d0;
+}
+
+.dark-mode .upcoming-days-forecast {
+    background-color: #4876bc;
+}

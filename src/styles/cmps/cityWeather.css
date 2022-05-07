@@ -35,4 +35,18 @@
     position: absolute;
     font-size: 3rem;
     cursor: pointer;
+    z-index: 15;
 }
+
+@media only screen and (max-width: 700px) {
+    .cities-container {
+        grid-template-columns: auto;
+    }
+
+    .city-container {
+        flex-direction: column;
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 500px) {}

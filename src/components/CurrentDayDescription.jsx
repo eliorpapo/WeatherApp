@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux'
 export const CurrentDayDescription = ({ currWeather }) => {
   const { wind, visibility, humidity, airPressure, maxTemp, minTemp } =
     currWeather
+
+  const { isMetric } = useSelector((state) => state.weatherModule)
+  const scaleTitle = isMetric ? 'Metric' : 'Imperial'
   return (
     <div className='current-day-description'>
       <div className='current-day-description-item'>
@@ -13,7 +17,7 @@ export const CurrentDayDescription = ({ currWeather }) => {
       <div className='current-day-description-item'>
         <p className='bold uppercase'>Visibility</p>
         <p>
-          {visibility.Metric.Value} {visibility.Metric.Unit}
+          {visibility[scaleTitle].Value} {visibility[scaleTitle].Unit}
         </p>
       </div>
 
@@ -25,23 +29,23 @@ export const CurrentDayDescription = ({ currWeather }) => {
       <div className='current-day-description-item'>
         <p className='bold uppercase'>Air Pressure</p>
         <p>
-          {airPressure.Metric.Value} {airPressure.Metric.Unit}
+          {airPressure[scaleTitle].Value} {airPressure[scaleTitle].Unit}
         </p>
       </div>
 
       <div className='current-day-description-item'>
         <p className='bold uppercase'>Max temp</p>
         <p>
-          {maxTemp.Metric.Value} &deg;
-          {maxTemp.Metric.Unit}
+          {maxTemp[scaleTitle].Value} &deg;
+          {maxTemp[scaleTitle].Unit}
         </p>
       </div>
 
       <div className='current-day-description-item'>
         <p className='bold uppercase'>Min temp</p>
         <p>
-          {minTemp.Metric.Value} &deg;
-          {minTemp.Metric.Unit}
+          {minTemp[scaleTitle].Value} &deg;
+          {minTemp[scaleTitle].Unit}
         </p>
       </div>
     </div>

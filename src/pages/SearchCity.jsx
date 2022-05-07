@@ -18,7 +18,7 @@ export const SearchCity = () => {
 
   if (!selectedCity) return <div>Loading...</div>
   return (
-    <div className='search-city-page'>
+    <div className='search-city-page page'>
       <h1 className='page-header'>Looking For Somewhere?</h1>
       <SearchBar setCity={setChosenCity} />
       <CityWeather city={selectedCity} />

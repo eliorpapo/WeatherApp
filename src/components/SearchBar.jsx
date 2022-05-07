@@ -3,6 +3,7 @@ import { apiService } from '../services/apiService'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
+import { toast } from 'react-toastify'
 
 export const SearchBar = ({ setCity }) => {
   const [SearchCity, setSearchCity] = useState('')
@@ -27,7 +28,7 @@ export const SearchBar = ({ setCity }) => {
       return
     }
     const res = await apiService.autoComplete(SearchCity).catch((err) => {
-      console.log('err', err)
+      toast.error(err.message)
     })
     setCityOpts(res)
   }

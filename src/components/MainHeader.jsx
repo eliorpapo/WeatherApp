@@ -1,22 +1,30 @@
 import { NavLink } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsMetric } from '../store/actions/weatherActions'
+import Hamburger from 'hamburger-react'
+import { useState } from 'react'
 
-export const MainHeader = () => {
+export const MainHeader = ({ toggleDarkMode, isDarkMode }) => {
   const navLinks = [
     { to: '/', name: 'Home' },
     { to: '/favorites', name: 'Favorites' },
     { to: '/popular', name: 'Main Cities' },
     { to: '/search', name: 'search' },
   ]
+  const [isOpen, setOpen] = useState(false)
+
+  const { isMetric } = useSelector((state) => state.weatherModule)
+
+  const dispatch = useDispatch()
 
   const toggleIsMetric = async () => {
-    console.log(`toggleIsMetric`)
+    dispatch(setIsMetric(!isMetric))
   }
 
-  const toggleDarkMode = async () => {
-    console.log(`toggleDarkMode`)
-  }
+  const btnMetricTxt = isMetric ? 'Celsius' : 'Fahrenheit'
+  const darkModeTxt = isDarkMode ? 'Light' : 'Dark'
 
   return (
     <header className='app-header'>
@@ -25,16 +33,19 @@ export const MainHeader = () => {
         <div className='toggle-btns'>
           <Tooltip title='Toggle Scale'>
             <Button id='header-toggle-btn' onClick={toggleIsMetric}>
-              C&deg;
+              {btnMetricTxt}&deg;
             </Button>
           </Tooltip>
           <Tooltip title='Toggle Dark Mode'>
             <Button id='header-toggle-btn' onClick={toggleDarkMode}>
-              Dark
+              {darkModeTxt}
             </Button>
           </Tooltip>
         </div>
-        <nav className='nav-btns'>
+        <div className='hamburger'>
+          <Hamburger toggled={isOpen} toggle={setOpen} />
+        </div>
+        <nav className={isOpen ? 'nav-btns-small-screen' : 'nav-btns'}>
           {navLinks.map((link) => (
             <NavLink
               key={link.to}

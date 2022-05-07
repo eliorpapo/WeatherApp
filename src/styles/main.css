@@ -2,6 +2,7 @@
 @import 'setup/base.css';
 @import 'setup/helpers.css';
 
+@import './light-mode.css';
 
 @import 'pages/searchCity.css';
 

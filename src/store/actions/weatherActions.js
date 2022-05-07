@@ -1,4 +1,5 @@
 import { apiService } from '../../services/apiService'
+import { toast } from 'react-toastify'
 
 export function setCity(selectedCity) {
   return async (dispatch) => {
@@ -8,7 +9,16 @@ export function setCity(selectedCity) {
       }
       dispatch({ type: 'SET_SELECTED_CITY', selectedCity })
     } catch (err) {
-      console.log('err.message', err.message)
+      toast.error(err.message)
+    }
+  }
+}
+export function setIsMetric(isMetric) {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: 'SET_ISMETRIC', isMetric })
+    } catch (err) {
+      toast.error(err.message)
     }
   }
 }

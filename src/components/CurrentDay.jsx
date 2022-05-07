@@ -1,7 +1,14 @@
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
+import { useSelector } from 'react-redux'
 
 export const CurrentDay = ({ location, currWeather }) => {
+  const { isMetric } = useSelector((state) => state.weatherModule)
+
   const imgSrc = require(`../assets/images/weather-icons/${currWeather.weatherIcon}.png`)
+
+  const scaleTxt = isMetric ? 'C' : 'F'
+  const scaleTitle = isMetric ? 'Metric' : 'Imperial'
+
   return (
     <div className='current-day'>
       <div className='current-day-img' />
@@ -19,7 +26,9 @@ export const CurrentDay = ({ location, currWeather }) => {
           <img src={imgSrc} alt='' />
         </div>
         <div className='current-day-info-section'>
-          <h2 className='bold'>{currWeather.currTemp.Metric.Value}°C</h2>
+          <h2 className='bold'>
+            {currWeather.currTemp[scaleTitle].Value}°{scaleTxt}
+          </h2>
           <h5>{currWeather.weatherConditions}</h5>
         </div>
       </div>

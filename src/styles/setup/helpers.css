@@ -32,3 +32,7 @@
     grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
     justify-items: center;
 }
+
+.page {
+    min-height: calc(100vh - 110px);
+}

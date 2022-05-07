@@ -10,11 +10,14 @@ import { removeFavorite, addFavorite } from '../store/actions/favoriteActions'
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import Tooltip from '@mui/material/Tooltip'
+import { toast } from 'react-toastify'
 
 export const CityWeather = ({ city }) => {
   const [currWeather, setCurrWeather] = useState()
   const [forecasts, setForecasts] = useState()
   const [isFavorite, setIsFavorite] = useState(false)
+
+  const { isMetric } = useSelector((state) => state.weatherModule)
 
   const dispatch = useDispatch()
 
@@ -23,25 +26,31 @@ export const CityWeather = ({ city }) => {
       Promise.all([getCurrWeather(), getForecast()]).then(isCityFavorite())
     }
     getWeatherData()
-  }, [])
+  }, [city])
+
+  useEffect(() => {
+    getForecast()
+  }, [isMetric])
 
   const getCurrWeather = async () => {
-    const currWeather = await apiService
-      .currentWeather(city.key)
-      .catch((err) => {
-        console.log(err.message)
-      })
+    // const currWeather = await apiService
+    //   .currentWeather(city.key)
+    //   .catch((err) => {
+    //     toast.error(err.message)
+    //   })
 
-    // const currWeather = demoDataCurrWeather
+    const currWeather = demoDataCurrWeather
     setCurrWeather(currWeather)
   }
 
   const getForecast = async () => {
-    const forecasts = await apiService.getForecast(city.key).catch((err) => {
-      console.log(err.message)
-    })
+    // const forecasts = await apiService
+    //   .getForecast(city.key, isMetric)
+    //   .catch((err) => {
+    //     toast.error(err.message)
+    //   })
 
-    // const forecasts = forecastDemo
+    const forecasts = forecastDemo
     setForecasts(forecasts)
   }
 

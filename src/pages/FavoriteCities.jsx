@@ -13,7 +13,7 @@ export const FavoriteCities = () => {
   }, [])
   if (!favorites) return <div>Loading...</div>
   return (
-    <div className='favorite-cities'>
+    <div className='favorite-cities page'>
       <h1 className='page-header'>Your Favorites</h1>
       <div className='cities-container'>
         {favorites.map((city) => (
