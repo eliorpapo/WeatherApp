@@ -1,8 +1,22 @@
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { getRandomInt } from '../services/utilService'
 
 export const CurrentDay = ({ location, currWeather }) => {
+  const [bcgImg, setBcgImg] = useState('')
   const { isMetric } = useSelector((state) => state.weatherModule)
+
+  const bcgImgsLoc = [
+    'background-image-cold',
+    'background-image-warm',
+    'background-image-mountain',
+  ]
+
+  useEffect(() => {
+    const num = getRandomInt(3)
+    setBcgImg(bcgImgsLoc[num])
+  }, [])
 
   const imgSrc = require(`../assets/images/weather-icons/${currWeather.weatherIcon}.png`)
 
@@ -11,7 +25,7 @@ export const CurrentDay = ({ location, currWeather }) => {
 
   return (
     <div className='current-day'>
-      <div className='current-day-img' />
+      <div className={`current-day-img ${bcgImg}`} />
       <div className='current-day-gradient' />
       <div className='current-day-info'>
         <div className='current-day-info-section'>

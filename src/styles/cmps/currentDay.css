@@ -21,7 +21,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-image: url('../../assets/mountain.jpg');
+    background-image: url('../../assets/cold-bg.jpg');
     background-size: cover;
     border-radius: var(--main-border-radius);
 }
@@ -50,4 +50,16 @@
     display: flex;
     justify-content: space-between;
     margin: 0 20px 7px;
+}
+
+.background-image-cold {
+    background-image: url('../../assets/cold-bg.jpg');
+}
+
+.background-image-mountain {
+    background-image: url('../../assets/mountain.jpg');
+}
+
+.background-image-warm {
+    background-image: url('../../assets/warm-bg.jpg');
 }
