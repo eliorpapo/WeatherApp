@@ -3,6 +3,7 @@ import { apiService } from '../services/apiService'
 import { getRandomInt } from '../services/utilService'
 import { toast } from 'react-toastify'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Loader from '../components/Loader'
 
 const CityWeather = lazy(() => import('../components/CityWeather'))
 
@@ -49,18 +50,16 @@ export const RandomCities = () => {
     else setRandomCities([...randomCities, cityObj[0]])
   }
 
-  if (!randomCities) return <div>Loading...</div>
-
   return (
     <div className='random-cities page'>
       <h1 className='page-header'>Random Capitals Around The World</h1>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <div className='random-cities-container'>
           <InfiniteScroll
             dataLength={cities.length}
             next={getCapitalWeather}
             hasMore={true}
-            loader={<h4>Loading...</h4>}
+            loader={<Loader />}
             endMessage={
               <p style={{ textAlign: 'center' }}>
                 <b>Yay! You have seen it all</b>
