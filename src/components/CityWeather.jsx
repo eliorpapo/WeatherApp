@@ -33,24 +33,24 @@ const CityWeather = ({ city }) => {
   }, [isMetric])
 
   const getCurrWeather = async () => {
-    // const currWeather = await apiService
-    //   .currentWeather(city.key)
-    //   .catch((err) => {
-    //     toast.error(err.message)
-    //   })
+    const currWeather = await apiService
+      .currentWeather(city.key)
+      .catch((err) => {
+        toast.error(err.message)
+      })
 
-    const currWeather = demoDataCurrWeather
+    // const currWeather = demoDataCurrWeather
     setCurrWeather(currWeather)
   }
 
   const getForecast = async () => {
-    // const forecasts = await apiService
-    //   .getForecast(city.key, isMetric)
-    //   .catch((err) => {
-    //     toast.error(err.message)
-    //   })
+    const forecasts = await apiService
+      .getForecast(city.key, isMetric)
+      .catch((err) => {
+        toast.error(err.message)
+      })
 
-    const forecasts = forecastDemo
+    // const forecasts = forecastDemo
     setForecasts(forecasts)
   }
 
