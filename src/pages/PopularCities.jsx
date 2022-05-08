@@ -1,4 +1,3 @@
-// import { CityWeather } from '../components/CityWeather'
 import { lazy, Suspense } from 'react'
 import { popularCitiesNames } from '../data'
 const CityWeather = lazy(() => import('../components/CityWeather'))

@@ -1,4 +1,3 @@
-// import { CityWeather } from '../components/CityWeather'
 import { SearchBar } from '../components/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCity } from '../store/actions/weatherActions'

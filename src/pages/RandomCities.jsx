@@ -4,8 +4,8 @@ import { getRandomInt } from '../services/utilService'
 import { toast } from 'react-toastify'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-// import { CityWeather } from '../components/CityWeather'
 const CityWeather = lazy(() => import('../components/CityWeather'))
+
 export const RandomCities = () => {
   const [randomCities, setRandomCities] = useState([])
   const [cities, setCities] = useState([])
@@ -57,7 +57,7 @@ export const RandomCities = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <div className='random-cities-container'>
           <InfiniteScroll
-            dataLength={cities.length} //This is important field to render the next data
+            dataLength={cities.length}
             next={getCapitalWeather}
             hasMore={true}
             loader={<h4>Loading...</h4>}

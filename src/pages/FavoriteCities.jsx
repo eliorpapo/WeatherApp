@@ -1,4 +1,3 @@
-// import { CityWeather } from '../components/CityWeather'
 import { useEffect, lazy, Suspense } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadFavorites } from '../store/actions/favoriteActions'
