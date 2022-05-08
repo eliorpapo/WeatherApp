@@ -5,6 +5,7 @@
 @import './light-mode.css';
 
 @import 'pages/searchCity.css';
+@import 'pages/randomCities.css';
 
 @import 'cmps/header.css';
 @import 'cmps/searchBar.css';

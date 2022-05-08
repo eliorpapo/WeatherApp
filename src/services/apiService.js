@@ -4,7 +4,22 @@ import { getDateFromTimeStamp } from './utilService'
 // const ACCUWEATHER_APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E'
 // const ACCUWEATHER_APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
 // const ACCUWEATHER_APIKEY = 'rO2nkWz2dOqubxGNnDneAg0WtKGS2Ypn'
-const ACCUWEATHER_APIKEY = 'AeG000iUcMK0QpCzzJtD9v287MU0vZx3'
+// const ACCUWEATHER_APIKEY = 'AeG000iUcMK0QpCzzJtD9v287MU0vZx3'
+const ACCUWEATHER_APIKEY = '3eTKU7usATbtnxhRJzCk7tkGKANKpOT1'
+
+async function getCities() {
+  const { data } = await axios
+    .get(`https://restcountries.com/v3.1/all`)
+    .catch((err) => {
+      console.log('err', err)
+      throw err
+    })
+  const cities = data.map((country) => {
+    if (country.capital) return (country = country.capital[0])
+  })
+
+  return cities
+}
 
 const language = 'en-us'
 
@@ -13,6 +28,7 @@ export const apiService = {
   currentWeather,
   getForecast,
   locateCity,
+  getCities,
 }
 
 async function locateCity() {

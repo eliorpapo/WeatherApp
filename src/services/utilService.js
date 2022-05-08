@@ -27,3 +27,7 @@ export function getDateFromTimeStamp(timeStamp) {
   }
   return formattedDate
 }
+
+export function getRandomInt(max) {
+  return Math.floor(Math.random() * max)
+}
