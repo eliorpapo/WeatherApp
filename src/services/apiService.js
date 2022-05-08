@@ -1,12 +1,14 @@
 import axios from 'axios'
 import { getDateFromTimeStamp } from './utilService'
 
-// const ACCUWEATHER_APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E' //git hun link dont use
-const ACCUWEATHER_APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
+// const ACCUWEATHER_APIKEY = '0IgI2QvEABm0S8V9BbsV7d7ZnQ52FW3E' //git hub link dont use
+// const ACCUWEATHER_APIKEY = 'tusvZaqpQhQRhAuEXlaRMqMMkcJIQAAU'
 // const ACCUWEATHER_APIKEY = 'rO2nkWz2dOqubxGNnDneAg0WtKGS2Ypn'
 // const ACCUWEATHER_APIKEY = 'AeG000iUcMK0QpCzzJtD9v287MU0vZx3'
 // const ACCUWEATHER_APIKEY = '3eTKU7usATbtnxhRJzCk7tkGKANKpOT1'
 // const ACCUWEATHER_APIKEY = 'ECfyDM0ozNwG7XFbZR3f4FM7lQlgNbWo'
+// const ACCUWEATHER_APIKEY = 'KpJdz8bsLAiNB9C5sDLSUc1ktRrv80jO'
+const ACCUWEATHER_APIKEY = 'zA5cmlZxunZZ5AwoCilxIjHO7R1doOGc'
 
 async function getCities() {
   const { data } = await axios
@@ -53,6 +55,7 @@ async function locateCity() {
 }
 
 async function autoComplete(str) {
+  console.log(`in`)
   var cities = []
   const { data } = await axios
     .get(

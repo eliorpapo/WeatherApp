@@ -105,9 +105,5 @@ export const popularCitiesNames = [
   { name: 'Tel Aviv', key: '215854' },
   { name: 'New York', key: '349727' },
   { name: 'Tokyo', key: '226396' },
-  { name: 'Cairo', key: '127164' },
-  { name: 'Istanbul', key: '318251' },
-  { name: 'Rio de Janeiro', key: '45449' },
   { name: 'Paris', key: '623' },
-  { name: 'London', key: '328328' },
 ]
