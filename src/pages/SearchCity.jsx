@@ -1,8 +1,9 @@
-import { CityWeather } from '../components/CityWeather'
+// import { CityWeather } from '../components/CityWeather'
 import { SearchBar } from '../components/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCity } from '../store/actions/weatherActions'
-import { useEffect } from 'react'
+import { Suspense, useEffect, lazy } from 'react'
+const CityWeather = lazy(() => import('../components/CityWeather'))
 
 export const SearchCity = () => {
   const { selectedCity } = useSelector((state) => state.weatherModule)
@@ -20,8 +21,10 @@ export const SearchCity = () => {
   return (
     <div className='search-city-page page'>
       <h1 className='page-header'>Looking For Somewhere?</h1>
-      <SearchBar setCity={setChosenCity} />
-      <CityWeather city={selectedCity} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchBar setCity={setChosenCity} />
+        <CityWeather city={selectedCity} />
+      </Suspense>
     </div>
   )
 }

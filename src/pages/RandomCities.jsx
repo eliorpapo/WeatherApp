@@ -1,10 +1,11 @@
-import { CityWeather } from '../components/CityWeather'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { apiService } from '../services/apiService'
 import { getRandomInt } from '../services/utilService'
 import { toast } from 'react-toastify'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
+// import { CityWeather } from '../components/CityWeather'
+const CityWeather = lazy(() => import('../components/CityWeather'))
 export const RandomCities = () => {
   const [randomCities, setRandomCities] = useState([])
   const [cities, setCities] = useState([])
@@ -53,23 +54,25 @@ export const RandomCities = () => {
   return (
     <div className='random-cities page'>
       <h1 className='page-header'>Random Capitals Around The World</h1>
-      <div className='random-cities-container'>
-        <InfiniteScroll
-          dataLength={cities.length} //This is important field to render the next data
-          next={getCapitalWeather}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          {randomCities.map((city) => (
-            <CityWeather city={city} key={city.name} />
-          ))}
-        </InfiniteScroll>
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className='random-cities-container'>
+          <InfiniteScroll
+            dataLength={cities.length} //This is important field to render the next data
+            next={getCapitalWeather}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            endMessage={
+              <p style={{ textAlign: 'center' }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
+            {randomCities.map((city) => (
+              <CityWeather city={city} key={city.name} />
+            ))}
+          </InfiniteScroll>
+        </div>
+      </Suspense>
     </div>
   )
 }

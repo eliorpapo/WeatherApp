@@ -12,7 +12,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import Tooltip from '@mui/material/Tooltip'
 import { toast } from 'react-toastify'
 
-export const CityWeather = ({ city }) => {
+const CityWeather = ({ city }) => {
   const [currWeather, setCurrWeather] = useState()
   const [forecasts, setForecasts] = useState()
   const [isFavorite, setIsFavorite] = useState(false)
@@ -106,3 +106,5 @@ export const CityWeather = ({ city }) => {
     </div>
   )
 }
+
+export default CityWeather
